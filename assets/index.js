@@ -44,6 +44,7 @@ btnEl.addEventListener('click', async (e) => {
     }
 
     e.target.classList.add('loading');
+    e.target.innerText = 'Обработка...';
 
     // 1. Делаем запрос на backend за ссылкой
     preEl.innerText = 'Get auth link from backend...';
@@ -77,7 +78,9 @@ btnEl.addEventListener('click', async (e) => {
 
         preEl.innerText = `code: ${event.data.code}`;
         popup.close(); // закрываем окно
-        e.target.classList.remove('loading');
+
+        e.target.classList.remove('loading'); // btn
+        e.target.innerText = 'Войти через VK'; // btn
 
 
         // 4. Далее делаем запрос на backend который обменяет код, получит данные и вернет креды для основного приложения
