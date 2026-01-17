@@ -60,6 +60,7 @@ btnEl.addEventListener('click', async (e) => {
     await wait(2000);
 
     const popup = window.open(link, 'vk_auth', `width=${width},height=${height},top=${top},left=${left}`);
+    // const popup = window.open(`http://localhost:63342/vk-auth/redirect.html?code=123`, 'vk_auth', `width=${width},height=${height},top=${top},left=${left}`);
 
     // 3. Слушаем сообщение от дочернего окна
     window.addEventListener('message', function(event) {

@@ -14,7 +14,7 @@
         window.opener.postMessage({
           type: 'VK_AUTH_SUCCESS',
           code: code
-        }, window.location.origin);
+        }, '*');
       } else {
         window.close();
       }
