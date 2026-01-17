@@ -64,7 +64,11 @@ btnEl.addEventListener('click', async (e) => {
 
     // 3. Слушаем сообщение от дочернего окна
     window.addEventListener('message', function(event) {
+        // NOTE:
         // тут нужно написать проверку, которая будет игнорировать все несанкционированные postMessage
+        //
+        // В случае с VK они еще до ридекта шлют postMessage в котором есть все данные, которые при редиректе
+        // станут GET параметрами, см event.data
         console.log(event);
 
         if (event.data.type !== 'VK_AUTH_SUCCESS') {
