@@ -65,6 +65,7 @@ btnEl.addEventListener('click', async (e) => {
     // 3. Слушаем сообщение от дочернего окна
     window.addEventListener('message', function(event) {
         // тут нужно написать проверку, которая будет игнорировать все несанкционированные postMessage
+        console.log(event);
 
         if (event.data.type !== 'VK_AUTH_SUCCESS') {
             return;
@@ -77,5 +78,5 @@ btnEl.addEventListener('click', async (e) => {
 
         // 4. Далее делаем запрос на backend который обменяет код, получит данные и вернет креды для основного приложения
         console.log(event.data.code);
-    }, { once: true });
+    }, { once: false });
 });

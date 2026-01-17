@@ -19,9 +19,6 @@
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get('code');
 
-      console.log(code);
-      console.log(window.opener);
-
       if (code && window.opener) {
         // Отправляем данные в основное окно (задержка для наглядности)
           setTimeout(() => {
