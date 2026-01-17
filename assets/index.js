@@ -61,5 +61,15 @@ btnEl.addEventListener('click', async (e) => {
 
     const popup = window.open(link, 'vk_auth', `width=${width},height=${height},top=${top},left=${left}`);
 
-    console.log(link);
+    // 3. Слушаем сообщение от дочернего окна
+    window.addEventListener('message', function(event) {
+        if (event.origin !== window.location.origin) {
+            return; // if other domain
+        }
+
+        if (event.data.type === 'VK_AUTH_SUCCESS') {
+            console.log('Код авторизации получен:', event.data.code);
+            popup.close();
+        }
+    }, { once: true });
 });
