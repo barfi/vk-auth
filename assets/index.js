@@ -64,13 +64,18 @@ btnEl.addEventListener('click', async (e) => {
 
     // 3. Слушаем сообщение от дочернего окна
     window.addEventListener('message', function(event) {
-        if (event.origin !== window.location.origin) {
-            return; // if other domain
+        // тут нужно написать проверку, которая будет игнорировать все несанкционированные postMessage
+
+        if (event.data.type !== 'VK_AUTH_SUCCESS') {
+            return;
         }
 
-        if (event.data.type === 'VK_AUTH_SUCCESS') {
-            console.log('Код авторизации получен:', event.data.code);
-            popup.close();
-        }
+        preEl.innerText = `code: ${event.data.code}`;
+        popup.close(); // закрываем окно
+        e.target.classList.remove('loading');
+
+
+        // 4. Далее делаем запрос на backend который обменяет код, получит данные и вернет креды для основного приложения
+        console.log(event.data.code);
     }, { once: true });
 });
